@@ -1,7 +1,7 @@
 import express, {json} from "express";
 import cors from 'cors';
 import 'express-async-errors';
-import {handleError} from "./utils/errors";
+import {handleError, ValidationError} from "./utils/errors";
 import rateLimit from "express-rate-limit";
 import {ingredientRouter} from "./routes/ingredient.router";
 import {mealRouter} from "./routes/meal.router";
@@ -23,9 +23,8 @@ app.use(rateLimit({
     windowMs: 5 * 60 * 1000,
     max: 100,
 }))
-app.use('/', (req, res) => {
-    res.end('<h1>To ja</h1>')
-})
+
+
 app.use('/user', userRouter);
 app.use('/week', weekRouter);
 app.use('/meal', mealRouter);
