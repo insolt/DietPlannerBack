@@ -1,6 +1,16 @@
 import {Router} from "express";
+import {IngredientRecord} from "../records/ingredient.record";
+
 
 export const ingredientRouter = Router()
+
+    .post('/', async (req, res) => {
+        const ingredient = new IngredientRecord(req.body);
+        await ingredient.insert();
+        res.json(ingredient);
+    })
+
+
     // .get('/search/:name?', async (req, res) => {
     //     const ads = await AdRecord.findAll(req.params.name ?? '');
     //     res.json(ads);
@@ -11,8 +21,4 @@ export const ingredientRouter = Router()
     //     res.json(ad);
     // })
     //
-    // .post('/', async (req, res) => {
-    //     const ad = new AdRecord(req.body);
-    //     await ad.insert();
-    //     res.json(ad);
-    // })
+

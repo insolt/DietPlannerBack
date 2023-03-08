@@ -1,6 +1,16 @@
 import {Router} from "express";
+import {InstructionRecord} from "../records/instruction.record";
 
-export const operationRouter = Router()
+
+export const instructionRouter = Router()
+
+    .post('/', async (req, res) => {
+        const instruction = new InstructionRecord(req.body);
+        await instruction.insert();
+        res.json(instruction);
+    })
+
+
 // .get('/search/:name?', async (req, res) => {
 //     const ads = await AdRecord.findAll(req.params.name ?? '');
 //     res.json(ads);
@@ -11,8 +21,3 @@ export const operationRouter = Router()
 //     res.json(ad);
 // })
 //
-// .post('/', async (req, res) => {
-//     const ad = new AdRecord(req.body);
-//     await ad.insert();
-//     res.json(ad);
-// })
