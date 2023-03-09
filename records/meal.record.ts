@@ -13,7 +13,7 @@ export class MealRecord implements MealEntity {
 
     constructor(obj: MealEntity) {
         if (!obj.recipeName || obj.recipeName.length > 50) {
-            throw new ValidationError('Meal\'s name cannot exceed length of 100.');
+            throw new ValidationError('Meal\'s name cannot exceed length of 50.');
         }
 
         this.id = obj.id;

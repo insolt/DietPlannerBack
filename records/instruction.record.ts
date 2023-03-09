@@ -14,6 +14,7 @@ export class InstructionRecord implements InstructionEntity {
 
     constructor(obj: InstructionEntity) {
         if (!obj.instructionName || obj.instructionName.length > 100) {
+            console.log('ZZbyt dluga nazwa instrukcji', obj.instructionName);
             throw new ValidationError('Instruction\'s name cannot exceed length of 100.');
         }
 

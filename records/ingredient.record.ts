@@ -15,8 +15,9 @@ export class IngredientRecord implements IngredientEntity {
     public ingredientEnergy: number;
 
     constructor(obj: IngredientEntity) {
-        if (!obj.ingredientName || obj.ingredientName.length > 100) {
-            throw new ValidationError('Ingredient\'s name cannot exceed length of 100.');
+        if (!obj.ingredientName || obj.ingredientName.length > 50) {
+            console.log('Zbyt dluga nazwa skladnika', obj.ingredientName);
+            throw new ValidationError('Ingredient\'s name cannot exceed length of 50.');
         }
 
         this.id = obj.id;
