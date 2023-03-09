@@ -38,7 +38,7 @@ app.use('/user', userRouter);
 app.use('/week', weekRouter);
 app.use('/meal', mealRouter);
 app.use('/ingredient', ingredientRouter);
-app.use('/operation', instructionRouter);
+app.use('/instruction', instructionRouter);
 
 app.use(handleError);
 

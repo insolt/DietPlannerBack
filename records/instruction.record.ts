@@ -29,7 +29,7 @@ export class InstructionRecord implements InstructionEntity {
             throw new Error("Object already exists in database");
         }
 
-        await pool.execute("INSERT INTO `ingredients` (`id`, `name`, `order_number`) VALUES (:id, :instructionName, :instructionOrderNumber)", this);
+        await pool.execute("INSERT INTO `instructions` (`id`, `name`, `order_number`) VALUES (:id, :instructionName, :instructionOrderNumber)", this);
     }
 
     // static async getOne(id: string): Promise<AdRecord> | null {
