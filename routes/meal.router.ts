@@ -10,10 +10,10 @@ export const mealRouter = Router()
         res.json(meal);
     })
 
-    // .get('/all', async (req, res) => {
-    //     const meals = await MealRecord.findAll();
-    //     res.json(meals);
-    // })
+    .get('/all', async (req, res) => {
+        const meals = await MealRecord.findAll();
+        res.json(meals);
+    })
 //
 // .get('/:id', async (req, res) => {
 //     const ad = await AdRecord.getOne(req.params.id);

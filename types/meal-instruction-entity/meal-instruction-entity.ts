@@ -1,4 +1,4 @@
 export interface MealInstructionEntity {
-    instructionDataId: string,
-    mealDataId: string,
+    instructionIdData: string,
+    mealIdData: string,
 }

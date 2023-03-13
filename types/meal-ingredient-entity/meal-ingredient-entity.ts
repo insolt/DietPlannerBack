@@ -1,4 +1,4 @@
 export interface MealIngredientEntity {
-    ingredientDataId: string,
-    mealDataId: string,
+    mealIdData: string,
+    ingredientIdData: string,
 }

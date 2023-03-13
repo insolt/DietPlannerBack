@@ -6,18 +6,18 @@ import {FieldPacket} from "mysql2";
 
 
 export class MealInstructionRecord implements MealInstructionEntity {
-    public mealDataId: string;
-    public instructionDataId: string;
+    public mealIdData: string;
+    public instructionIdData: string;
 
     constructor(obj: MealInstructionEntity) {
 
-        this.mealDataId = obj.mealDataId;
-        this.instructionDataId = obj.instructionDataId;
+        this.mealIdData = obj.mealIdData;
+        this.instructionIdData = obj.instructionIdData;
     }
 
     async insert(): Promise<void> {
 
-        await pool.execute("INSERT INTO `meals_instructions` (`mealId`, `instructionId`) VALUES (:mealDataId, :instructionDataId)", this);
+        await pool.execute("INSERT INTO `meals_instructions` (`mealId`, `instructionId`) VALUES (:mealIdData, :instructionIdData)", this);
     }
 
     // static async getOne(id: string): Promise<AdRecord> | null {

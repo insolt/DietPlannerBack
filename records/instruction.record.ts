@@ -14,7 +14,6 @@ export class InstructionRecord implements InstructionEntity {
 
     constructor(obj: InstructionEntity) {
         if (!obj.instructionName || obj.instructionName.length > 100) {
-            console.log('ZZbyt dluga nazwa instrukcji', obj.instructionName);
             throw new ValidationError('Instruction\'s name cannot exceed length of 100.');
         }
 
@@ -32,6 +31,14 @@ export class InstructionRecord implements InstructionEntity {
 
         await pool.execute("INSERT INTO `instructions` (`id`, `name`, `order_number`) VALUES (:id, :instructionName, :instructionOrderNumber)", this);
     }
+
+
+    static async delete(id: string): Promise<void> {
+        await pool.execute("DELETE FROM `instructions` WHERE `id` = :id", {
+            id,
+        });
+    }
+
 
     // static async getOne(id: string): Promise<AdRecord> | null {
     //     const [result] = await pool.execute("SELECT * FROM `ads` WHERE `id` =:id", {

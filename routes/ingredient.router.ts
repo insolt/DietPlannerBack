@@ -10,6 +10,11 @@ export const ingredientRouter = Router()
         res.json(ingredient);
     })
 
+    .delete('/:id', async(req, res) =>{
+        const ingredient = await IngredientRecord.delete(req.params.id);
+        res.json(ingredient);
+    })
+
 
     // .get('/search/:name?', async (req, res) => {
     //     const ads = await AdRecord.findAll(req.params.name ?? '');

@@ -4,7 +4,7 @@ import {pool} from "../utils/db";
 import {FieldPacket} from "mysql2";
 import {v4 as uuid} from "uuid";
 
-// type MealRecordResults = [MealEntity[], FieldPacket[]]
+type MealRecordResults = [MealEntity[], FieldPacket[]]
 
 
 export class MealRecord implements MealEntity {
@@ -30,6 +30,12 @@ export class MealRecord implements MealEntity {
         await pool.execute("INSERT INTO `meals` (`id`, `name`) VALUES (:id, :recipeName)", this);
     }
 
+
+    static async findAll(): Promise<MealEntity[]> {
+        const [results] = await pool.execute("SELECT * FROM `meals`") as MealRecordResults;
+        return results;
+    }
+
     // static async getOne(id: string): Promise<AdRecord> | null {
     //     const [result] = await pool.execute("SELECT * FROM `ads` WHERE `id` =:id", {
     //         id,
@@ -38,11 +44,7 @@ export class MealRecord implements MealEntity {
     //     return result.length === 0 ? null : new AdRecord(result[0])
     // }
 
-    // static async findAll(): Promise<MealEntity[]> {
-    //     const [results] = await pool.execute("SELECT * FROM `meals`") as MealRecordResults;
-    //     console.log(results)
-    //     return results;
-    // }
+
 
 
 }

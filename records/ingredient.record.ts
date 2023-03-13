@@ -16,8 +16,7 @@ export class IngredientRecord implements IngredientEntity {
 
     constructor(obj: IngredientEntity) {
         if (!obj.ingredientName || obj.ingredientName.length > 50) {
-            console.log('Zbyt dluga nazwa skladnika', obj.ingredientName);
-            throw new ValidationError('Ingredient\'s name cannot exceed length of 50.');
+            throw new ValidationError('Ingredient\'s name cannot exceed length of 50 letters.');
         }
 
         this.id = obj.id;
@@ -35,6 +34,13 @@ export class IngredientRecord implements IngredientEntity {
         }
 
         await pool.execute("INSERT INTO `ingredients` (`id`, `name`, `amount`, `unit`, `energy`) VALUES (:id, :ingredientName, :ingredientAmount, :ingredientUnit, :ingredientEnergy)", this);
+    }
+
+
+    static async delete(id: string): Promise<void> {
+       await pool.execute("DELETE FROM `ingredients` WHERE `id` = :id", {
+            id,
+        });
     }
 
     // static async getOne(id: string): Promise<AdRecord> | null {
