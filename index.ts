@@ -13,6 +13,8 @@ import {weekRouter} from "./routes/week.router";
 import {instructionRouter} from "./routes/instruction.router";
 import {mealIngredientRouter} from "./routes/meal-ingredient.router";
 import {mealInstructionRouter} from "./routes/meal-instruction.router";
+import {planRouter} from "./routes/plan.router";
+import {planMealRouter} from "./routes/plan-meal.router";
 
 
 
@@ -43,6 +45,7 @@ app.use('/ingredient', ingredientRouter);
 app.use('/instruction', instructionRouter);
 app.use('/meal-ingredient', mealIngredientRouter);
 app.use('/meal-instruction', mealInstructionRouter);
+app.use('/plan', planRouter);
 
 app.use(handleError);
 

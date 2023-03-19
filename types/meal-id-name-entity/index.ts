@@ -1,0 +1,1 @@
+export * from "./meal-id-name-entity";
