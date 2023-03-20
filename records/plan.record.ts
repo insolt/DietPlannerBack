@@ -9,10 +9,13 @@ type PlanRecordResults = [MealIdPlannerPositionId[], FieldPacket[]]
 
 export class PlanRecord implements MealIdPlannerPositionId {
     public id?: string;
+    public planName: string | undefined;
     public mealId: string;
     public plannerPositionId: number;
 
     constructor(obj: MealIdPlannerPositionId) {
+        this.id = obj.id;
+        this.planName = obj.planName;
         this.mealId = obj.mealId;
         this.plannerPositionId = obj.plannerPositionId;
     }
@@ -24,7 +27,8 @@ export class PlanRecord implements MealIdPlannerPositionId {
             throw new Error("Object already exists in database");
         }
 
-        await pool.execute("INSERT INTO `plans` (`id`, `mealId`, `plannerPositionId`) VALUES (:id, :mealId, :plannerPositionId)", this);
+        await pool.execute('DELETE FROM `plans` WHERE `planName` = ?', [this.planName]);
+        await pool.execute("INSERT INTO `plans` (`id`, `planName`, `mealId`, `plannerPositionId`) VALUES (:id, :planName, :mealId, :plannerPositionId)", this);
     }
 
 

@@ -1,5 +1,6 @@
 export interface MealIdPlannerPositionId {
-    planName?: string,
+    id?: string;
+    planName?: string | undefined,
     mealId: string,
     plannerPositionId: number,
 }
