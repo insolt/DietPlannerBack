@@ -1,6 +1,6 @@
 export interface InstructionEntity {
     id?: string,
-    newInstructionId?: string,
+    mealId?: string,
     instructionName: string,
     instructionOrderNumber: number,
 }

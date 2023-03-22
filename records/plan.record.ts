@@ -27,7 +27,6 @@ export class PlanRecord implements MealIdPlannerPositionId {
             throw new Error("Object already exists in database");
         }
 
-        await pool.execute('DELETE FROM `plans` WHERE `planName` = ?', [this.planName]);
         await pool.execute("INSERT INTO `plans` (`id`, `planName`, `mealId`, `plannerPositionId`) VALUES (:id, :planName, :mealId, :plannerPositionId)", this);
     }
 

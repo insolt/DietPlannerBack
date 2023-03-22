@@ -9,15 +9,20 @@ import {v4 as uuid} from "uuid";
 
 export class InstructionRecord implements InstructionEntity {
     public id?: string;
+    public mealId?: string;
     public instructionName: string;
     public instructionOrderNumber: number;
 
     constructor(obj: InstructionEntity) {
-        if (!obj.instructionName || obj.instructionName.length > 100) {
+        if (!obj.instructionName) {
+            throw new ValidationError('instruction does not exist.');
+        }
+        if (obj.instructionName.length > 100) {
             throw new ValidationError('Instruction\'s name cannot exceed length of 100.');
         }
 
         this.id = obj.id;
+        this.mealId = obj.mealId;
         this.instructionName = obj.instructionName;
         this.instructionOrderNumber = obj.instructionOrderNumber;
     }
@@ -29,7 +34,7 @@ export class InstructionRecord implements InstructionEntity {
             throw new Error("Object already exists in database");
         }
 
-        await pool.execute("INSERT INTO `instructions` (`id`, `name`, `order_number`) VALUES (:id, :instructionName, :instructionOrderNumber)", this);
+        await pool.execute("INSERT INTO `instructions` (`id`, `mealId`, `name`, `order_number`) VALUES (:id, :mealId, :instructionName, :instructionOrderNumber)", this);
     }
 
 

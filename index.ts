@@ -6,13 +6,11 @@ import cors from 'cors';
 import 'express-async-errors';
 import {handleError, ValidationError} from "./utils/errors";
 import rateLimit from "express-rate-limit";
-import {ingredientRouter} from "./routes/ingredient.router";
 import {mealRouter} from "./routes/meal.router";
+import {ingredientRouter} from "./routes/ingredient.router";
+import {instructionRouter} from "./routes/instruction.router";
 import {userRouter} from "./routes/user.router";
 import {weekRouter} from "./routes/week.router";
-import {instructionRouter} from "./routes/instruction.router";
-import {mealIngredientRouter} from "./routes/meal-ingredient.router";
-import {mealInstructionRouter} from "./routes/meal-instruction.router";
 import {planRouter} from "./routes/plan.router";
 
 
@@ -42,8 +40,6 @@ app.use('/week', weekRouter);
 app.use('/meal', mealRouter);
 app.use('/ingredient', ingredientRouter);
 app.use('/instruction', instructionRouter);
-app.use('/meal-ingredient', mealIngredientRouter);
-app.use('/meal-instruction', mealInstructionRouter);
 app.use('/plan', planRouter);
 
 app.use(handleError);

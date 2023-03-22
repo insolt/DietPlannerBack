@@ -36,12 +36,12 @@ export class MealRecord implements MealEntity {
         return results;
     }
 
-    // static async getOne(id: string): Promise<AdRecord> | null {
-    //     const [result] = await pool.execute("SELECT * FROM `ads` WHERE `id` =:id", {
+    // static async getOne(id: string): Promise<MealRecord> {
+    //     const [result] = await pool.execute("SELECT * FROM `meals` WHHERE `id` = :id", {
     //         id,
-    //     }) as AdRecordResults;
+    //     });
     //
-    //     return result.length === 0 ? null : new AdRecord(result[0])
+    //     return new MealRecord(result)
     // }
 
 

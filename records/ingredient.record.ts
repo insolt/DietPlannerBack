@@ -9,17 +9,22 @@ import {v4 as uuid} from "uuid";
 
 export class IngredientRecord implements IngredientEntity {
     public id?: string;
+    public mealId?: string;
     public ingredientName: string;
     public ingredientAmount: number;
     public ingredientUnit: string;
     public ingredientEnergy: number;
 
     constructor(obj: IngredientEntity) {
-        if (!obj.ingredientName || obj.ingredientName.length > 50) {
+        if (!obj.ingredientName) {
+            throw new ValidationError('Ingredient does not exist.');
+        }
+        if (obj.ingredientName.length > 50) {
             throw new ValidationError('Ingredient\'s name cannot exceed length of 50 letters.');
         }
 
         this.id = obj.id;
+        this.mealId = obj.mealId;
         this.ingredientName = obj.ingredientName;
         this.ingredientAmount = obj.ingredientAmount;
         this.ingredientUnit = obj.ingredientUnit;
@@ -33,7 +38,7 @@ export class IngredientRecord implements IngredientEntity {
             throw new Error("Object already exists in database");
         }
 
-        await pool.execute("INSERT INTO `ingredients` (`id`, `name`, `amount`, `unit`, `energy`) VALUES (:id, :ingredientName, :ingredientAmount, :ingredientUnit, :ingredientEnergy)", this);
+        await pool.execute("INSERT INTO `ingredients` (`id`, `mealId`, `name`, `amount`, `unit`, `energy`) VALUES (:id, :mealId, :ingredientName, :ingredientAmount, :ingredientUnit, :ingredientEnergy)", this);
     }
 
 

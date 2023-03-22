@@ -5,3 +5,4 @@ export * from "./meal-ingredient-entity";
 export * from "./meal-instruction-entity";
 export * from "./meal-id-name-entity";
 export * from "./meal-planner-position";
+export * from "./single-meal-id";

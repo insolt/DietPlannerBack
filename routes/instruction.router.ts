@@ -1,6 +1,5 @@
 import {Router} from "express";
 import {InstructionRecord} from "../records/instruction.record";
-import {IngredientRecord} from "../records/ingredient.record";
 
 
 export const instructionRouter = Router()
