@@ -1,10 +1,10 @@
-import {IngredientEntity} from "../types";
+import {IngredientEnergy, IngredientEntity} from "../types";
 import {ValidationError} from "../utils/errors";
 import {pool} from "../utils/db";
 import {FieldPacket} from "mysql2";
 import {v4 as uuid} from "uuid";
 
-// type IngredientRecordResults = [IngredientEntity[], FieldPacket[]];
+type IngredientEnergyResults = [IngredientEnergy[], FieldPacket[]];
 
 
 export class IngredientRecord implements IngredientEntity {
@@ -48,13 +48,12 @@ export class IngredientRecord implements IngredientEntity {
         });
     }
 
-    // static async getOne(id: string): Promise<AdRecord> | null {
-    //     const [result] = await pool.execute("SELECT * FROM `ads` WHERE `id` =:id", {
-    //         id,
-    //     }) as AdRecordResults;
-    //
-    //     return result.length === 0 ? null : new AdRecord(result[0])
-    // }
+    static async findAll(id: string): Promise<IngredientEnergy[]>  {
+        const [result] = await pool.execute("SELECT `energy` FROM `ingredients` WHERE `mealId` = :id", {
+            id,
+        }) as IngredientEnergyResults;
+        return result
+    }
 
     // static async findAll(): Promise<IngredientEntity[]> {
     //     const [results] = await pool.execute("SELECT * FROM `meals`") as MealRecordResults;
