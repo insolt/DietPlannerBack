@@ -1,10 +1,12 @@
-import {MealEntity} from "../types";
+import {MealEntity, MealIngredientEntity, MealInstructionEntity, MealIngredientInstruction, MealName} from "../types";
 import {ValidationError} from "../utils/errors";
 import {pool} from "../utils/db";
 import {FieldPacket} from "mysql2";
 import {v4 as uuid} from "uuid";
 
-type MealRecordResults = [MealEntity[], FieldPacket[]]
+type MealRecordResults = [MealName[], FieldPacket[]]
+type MealIngredientRecordResults = [MealIngredientEntity[], FieldPacket[]]
+type MealInstructionRecordResults = [MealInstructionEntity[], FieldPacket[]]
 
 
 export class MealRecord implements MealEntity {
@@ -31,18 +33,26 @@ export class MealRecord implements MealEntity {
     }
 
 
-    static async findAll(): Promise<MealEntity[]> {
+    static async findAll(): Promise<MealName[]> {
         const [results] = await pool.execute("SELECT * FROM `meals`") as MealRecordResults;
         return results;
     }
 
-    // static async getOne(id: string): Promise<MealRecord> {
-    //     const [result] = await pool.execute("SELECT * FROM `meals` WHHERE `id` = :id", {
-    //         id,
-    //     });
-    //
-    //     return new MealRecord(result)
-    // }
+    static async getOne(id: string): Promise<MealIngredientInstruction> {
+        const [resultMeal] = await pool.execute("SELECT `name` FROM `meals` WHERE `id` = :id", {
+            id,
+        }) as MealRecordResults;
+
+        const [resultIngredient] = await pool.execute("SELECT `name`, `amount`, `unit`, `energy` FROM `ingredients` WHERE `mealId` = :id", {
+            id,
+        }) as MealIngredientRecordResults;
+
+        const [resultInstruction] = await pool.execute("SELECT `name`, `order_number` FROM `instructions` WHERE `mealId` = :id", {
+            id,
+        }) as MealInstructionRecordResults;
+
+        return {resultMeal, resultIngredient, resultInstruction}
+    }
 
 
 

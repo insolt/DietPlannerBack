@@ -7,3 +7,6 @@ export interface IngredientEntity {
     ingredientEnergy: number,
 }
 
+export interface IngredientEnergy {
+    energy: number,
+}
