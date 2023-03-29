@@ -20,13 +20,9 @@ export class SchedulerRecord implements Scheduler {
     }
 
     async insert(): Promise<void> {
-        if (!this.id) {
-            this.id = uuid();
-        } else {
-            throw new Error("Object already exists in database");
-        }
 
-        await pool.execute("INSERT INTO `schedulers` (`id`, `planId`, `mealId`, `plannerPositionId`) VALUES (:id, :planId, :mealId, :plannerPositionId)", this);
+        await pool.execute("INSERT INTO `schedulers` (`planId`, `mealId`, `plannerPositionId`) VALUES (:planId, :mealId, :plannerPositionId)", this);
+
     }
 
 
