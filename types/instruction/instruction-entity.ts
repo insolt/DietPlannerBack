@@ -7,7 +7,7 @@ export interface InstructionEntity {
 
 export interface InstructionEntityFront {
     id?: string,
-    mealId: string,
+    mealId?: string,
     name: string,
     orderNumber: number,
 }

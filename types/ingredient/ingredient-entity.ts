@@ -13,7 +13,7 @@ export interface IngredientEnergy {
 
 export interface IngredientEntityFront {
     id?: string,
-    mealId: string,
+    mealId?: string,
     name: string,
     amount: number,
     unit: string,
