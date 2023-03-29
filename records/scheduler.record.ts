@@ -1,30 +1,32 @@
-import {Plan} from "../types";
+import {Scheduler} from "../types";
 import {pool} from "../utils/db";
 import {FieldPacket} from "mysql2";
 import {v4 as uuid} from "uuid";
 
-type PlanRecordResults = [Plan[], FieldPacket[]]
+type SchedulerRecordResults = [Scheduler[], FieldPacket[]]
 
 
-export class PlanRecord implements Plan {
+export class SchedulerRecord implements Scheduler {
     public id?: string;
-    public planName: string;
+    public planId: string;
+    public mealId: string;
+    public plannerPositionId: number;
 
-    constructor(obj: Plan) {
+    constructor(obj: Scheduler) {
         this.id = obj.id;
-        this.planName = obj.planName;
+        this.planId = obj.planId;
+        this.mealId = obj.mealId;
+        this.plannerPositionId = obj.plannerPositionId;
     }
 
-    async insert(): Promise<string> {
+    async insert(): Promise<void> {
         if (!this.id) {
             this.id = uuid();
         } else {
             throw new Error("Object already exists in database");
         }
 
-        await pool.execute("INSERT INTO `plans` (`id`, `planName`) VALUES (:id, :planName)", this);
-
-        return this.id
+        await pool.execute("INSERT INTO `schedulers` (`id`, `planId`, `mealId`, `plannerPositionId`) VALUES (:id, :planId, :mealId, :plannerPositionId)", this);
     }
 
 

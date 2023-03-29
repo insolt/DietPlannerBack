@@ -12,6 +12,7 @@ import {instructionRouter} from "./routes/instruction.router";
 import {userRouter} from "./routes/user.router";
 import {weekRouter} from "./routes/week.router";
 import {planRouter} from "./routes/plan.router";
+import {schedulerRouter} from "./routes/scheduler.router";
 
 
 
@@ -41,6 +42,7 @@ app.use('/meal', mealRouter);
 app.use('/ingredient', ingredientRouter);
 app.use('/instruction', instructionRouter);
 app.use('/plan', planRouter);
+app.use('/scheduler', schedulerRouter);
 
 app.use(handleError);
 

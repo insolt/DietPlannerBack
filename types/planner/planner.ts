@@ -1,6 +1,11 @@
-export interface Planner {
+export interface Scheduler {
     id?: string,
-    planName: string,
+    planId: string,
     mealId: string,
     plannerPositionId: number,
+}
+
+export interface Plan {
+    id?: string,
+    planName: string,
 }
