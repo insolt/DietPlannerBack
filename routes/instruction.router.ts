@@ -1,5 +1,6 @@
 import {Router} from "express";
 import {InstructionRecord} from "../records/instruction.record";
+import {IngredientRecord} from "../records/ingredient.record";
 
 
 export const instructionRouter = Router()
@@ -16,6 +17,11 @@ export const instructionRouter = Router()
         res.json(instruction);
     })
 
+
+    .get('/getSet/:id', async (req, res) => {
+        const instruction = await InstructionRecord.getSet(req.params.id);
+        res.json(instruction);
+    })
 
 // .get('/search/:name?', async (req, res) => {
 //     const ads = await AdRecord.findAll(req.params.name ?? '');

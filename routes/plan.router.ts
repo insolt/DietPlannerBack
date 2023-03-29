@@ -9,5 +9,4 @@ export const planRouter = Router()
         const plan = new PlanRecord(req.body);
         await plan.insert();
         res.json({saved: true});
-
     })

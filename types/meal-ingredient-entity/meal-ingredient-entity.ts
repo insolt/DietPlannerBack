@@ -1,8 +1,8 @@
 export interface MealIngredientEntity {
-    id: string,
+    id?: string,
     name: string,
     amount: number,
     unit: string,
     energy: number,
-    mealId: string,
+    mealId?: string,
 }

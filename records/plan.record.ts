@@ -1,19 +1,19 @@
-import {MealIdPlannerPositionId} from "../types";
+import {Planner} from "../types";
 import {ValidationError} from "../utils/errors";
 import {pool} from "../utils/db";
 import {FieldPacket} from "mysql2";
 import {v4 as uuid} from "uuid";
 
-type PlanRecordResults = [MealIdPlannerPositionId[], FieldPacket[]]
+type PlanRecordResults = [Planner[], FieldPacket[]]
 
 
-export class PlanRecord implements MealIdPlannerPositionId {
+export class PlanRecord implements Planner {
     public id?: string;
-    public planName: string | undefined;
+    public planName: string;
     public mealId: string;
     public plannerPositionId: number;
 
-    constructor(obj: MealIdPlannerPositionId) {
+    constructor(obj: Planner) {
         this.id = obj.id;
         this.planName = obj.planName;
         this.mealId = obj.mealId;

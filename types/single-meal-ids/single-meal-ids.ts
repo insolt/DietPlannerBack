@@ -1,4 +1,4 @@
 export interface SingleMealIds {
-    mealId: string | undefined,
-    plannerPositionId: number | undefined,
+    mealId: string,
+    plannerPositionId: number,
 }

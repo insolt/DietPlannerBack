@@ -1,15 +1,15 @@
-import {InstructionEntity} from "../types";
+import {IngredientEntity, InstructionEntity} from "../types";
 import {ValidationError} from "../utils/errors";
 import {pool} from "../utils/db";
 import {FieldPacket} from "mysql2";
 import {v4 as uuid} from "uuid";
 
-// type IngredientRecordResults = [IngredientEntity[], FieldPacket[]];
+type InstructionResults = [InstructionEntity[], FieldPacket[]];
 
 
 export class InstructionRecord implements InstructionEntity {
     public id?: string;
-    public mealId?: string;
+    public mealId: string;
     public instructionName: string;
     public instructionOrderNumber: number;
 
@@ -26,6 +26,7 @@ export class InstructionRecord implements InstructionEntity {
         this.instructionName = obj.instructionName;
         this.instructionOrderNumber = obj.instructionOrderNumber;
     }
+
 
     async insert(): Promise<void> {
         if (!this.id) {
@@ -44,6 +45,14 @@ export class InstructionRecord implements InstructionEntity {
         });
     }
 
+    static async getSet(id: string): Promise<InstructionEntity[]> {
+        const [resultInstruction] = await pool.execute("SELECT `name`, `amount`, `unit`, `energy` FROM `ingredients` WHERE `mealId` = :id", {
+            id,
+        }) as InstructionResults;
+
+        return resultInstruction
+    }
+
 
     // static async getOne(id: string): Promise<AdRecord> | null {
     //     const [result] = await pool.execute("SELECT * FROM `ads` WHERE `id` =:id", {
@@ -52,6 +61,7 @@ export class InstructionRecord implements InstructionEntity {
     //
     //     return result.length === 0 ? null : new AdRecord(result[0])
     // }
+
 
     // static async findAll(): Promise<IngredientEntity[]> {
     //     const [results] = await pool.execute("SELECT * FROM `meals`") as MealRecordResults;

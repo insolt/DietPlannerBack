@@ -1,12 +1,10 @@
-import {MealEntity, MealIngredientEntity, MealInstructionEntity, MealIngredientInstruction, MealName} from "../types";
+import {MealEntity, IngredientEntity, InstructionEntity, MealIngredientInstruction} from "../types";
 import {ValidationError} from "../utils/errors";
 import {pool} from "../utils/db";
 import {FieldPacket} from "mysql2";
 import {v4 as uuid} from "uuid";
 
-type MealRecordResults = [MealName[], FieldPacket[]]
-type MealIngredientRecordResults = [MealIngredientEntity[], FieldPacket[]]
-type MealInstructionRecordResults = [MealInstructionEntity[], FieldPacket[]]
+type MealResults = [MealEntity[], FieldPacket[]]
 
 
 export class MealRecord implements MealEntity {
@@ -22,39 +20,28 @@ export class MealRecord implements MealEntity {
         this.recipeName = obj.recipeName;
     }
 
+
     async insert(): Promise<void> {
         if (!this.id) {
             this.id = uuid();
         } else {
             throw new Error("Object already exists in database");
         }
-
         await pool.execute("INSERT INTO `meals` (`id`, `name`) VALUES (:id, :recipeName)", this);
     }
 
 
-    static async findAll(): Promise<MealName[]> {
-        const [results] = await pool.execute("SELECT * FROM `meals`") as MealRecordResults;
+    static async findAll(): Promise<MealEntity[]> {
+        const [results] = await pool.execute("SELECT * FROM `meals`") as MealResults;
         return results;
     }
 
-    static async getOne(id: string): Promise<MealIngredientInstruction> {
-        const [resultMeal] = await pool.execute("SELECT `name` FROM `meals` WHERE `id` = :id", {
-            id,
-        }) as MealRecordResults;
 
-        const [resultIngredient] = await pool.execute("SELECT `name`, `amount`, `unit`, `energy` FROM `ingredients` WHERE `mealId` = :id", {
+    static async getOne(id: string): Promise<MealEntity[]> {
+        const [resultMeal] = await pool.execute("SELECT `recipeName` FROM `meals` WHERE `id` = :id", {
             id,
-        }) as MealIngredientRecordResults;
+        }) as MealResults;
 
-        const [resultInstruction] = await pool.execute("SELECT `name`, `order_number` FROM `instructions` WHERE `mealId` = :id", {
-            id,
-        }) as MealInstructionRecordResults;
-
-        return {resultMeal, resultIngredient, resultInstruction}
+        return resultMeal
     }
-
-
-
-
 }

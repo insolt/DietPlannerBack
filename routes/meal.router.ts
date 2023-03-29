@@ -17,7 +17,6 @@ export const mealRouter = Router()
 
     .get('/:id', async (req, res) => {
         const singleMeal = await MealRecord.getOne(req.params.id);
-        console.log(singleMeal);
         res.json(singleMeal);
     })
 

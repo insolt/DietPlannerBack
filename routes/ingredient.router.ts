@@ -10,17 +10,24 @@ export const ingredientRouter = Router()
         res.json(ingredient);
     })
 
-    .delete('/:id', async(req, res) =>{
+    .delete('/:id', async (req, res) => {
         const ingredient = await IngredientRecord.delete(req.params.id);
         res.json(ingredient);
     })
 
 
-    .get('/findAll/:id', async (req, res) => {
-        const ingredients = await IngredientRecord.findAll(req.params.id);
+    .get('/findOneEnergy/:id', async (req, res) => {
+        const ingredients = await IngredientRecord.findOneEnergy(req.params.id);
         res.json(ingredients);
     })
-    //
+
+
+    .get('/getSet/:id', async (req, res) => {
+        const ingredients = await IngredientRecord.getSet(req.params.id);
+        res.json(ingredients);
+    })
+
+
     // .get('/:id', async (req, res) => {
     //     const ad = await AdRecord.getOne(req.params.id);
     //     res.json(ad);
