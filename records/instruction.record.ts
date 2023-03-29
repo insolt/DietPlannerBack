@@ -46,7 +46,7 @@ export class InstructionRecord implements InstructionEntity {
     }
 
     static async getSet(id: string): Promise<InstructionEntity[]> {
-        const [resultInstruction] = await pool.execute("SELECT `name`, `amount`, `unit`, `energy` FROM `ingredients` WHERE `mealId` = :id", {
+        const [resultInstruction] = await pool.execute("SELECT `name`, `orderNumber` FROM `instructions` WHERE `mealId` = :id", {
             id,
         }) as InstructionResults;
 

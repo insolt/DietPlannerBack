@@ -1,1 +1,1 @@
-export * from "./instruction-entity";
+export type {InstructionEntity, InstructionEntityFront} from "./instruction-entity";

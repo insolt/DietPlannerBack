@@ -10,3 +10,12 @@ export interface IngredientEntity {
 export interface IngredientEnergy {
     energy: number,
 }
+
+export interface IngredientEntityFront {
+    id?: string,
+    mealId: string,
+    name: string,
+    amount: number,
+    unit: string,
+    energy: number,
+}

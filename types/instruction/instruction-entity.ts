@@ -4,3 +4,10 @@ export interface InstructionEntity {
     instructionName: string,
     instructionOrderNumber: number,
 }
+
+export interface InstructionEntityFront {
+    id?: string,
+    mealId: string,
+    name: string,
+    orderNumber: number,
+}

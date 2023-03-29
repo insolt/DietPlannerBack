@@ -1,1 +1,1 @@
-export * from "./ingredient-entity";
+export type {IngredientEntity, IngredientEnergy, IngredientEntityFront} from "./ingredient-entity";
