@@ -1,5 +1,5 @@
 import cookieSession from "cookie-session";
-import express from "express";
+import express, {Router} from "express";
 import cookieParser from "cookie-parser";
 import {sessionConfig} from './session-config';
 import cors from 'cors';
@@ -36,13 +36,18 @@ app.use(rateLimit({
 }))
 
 
-app.use('/user', userRouter);
-app.use('/week', weekRouter);
-app.use('/meal', mealRouter);
-app.use('/ingredient', ingredientRouter);
-app.use('/instruction', instructionRouter);
-app.use('/plan', planRouter);
-app.use('/scheduler', schedulerRouter);
+const router = Router();
+
+router.use('/user', userRouter);
+router.use('/week', weekRouter);
+router.use('/meal', mealRouter);
+router.use('/ingredient', ingredientRouter);
+router.use('/instruction', instructionRouter);
+router.use('/plan', planRouter);
+router.use('/scheduler', schedulerRouter);
+
+app.use('/api', router);
+
 
 app.use(handleError);
 
