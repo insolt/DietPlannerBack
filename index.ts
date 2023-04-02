@@ -13,13 +13,14 @@ import {userRouter} from "./routes/user.router";
 import {weekRouter} from "./routes/week.router";
 import {planRouter} from "./routes/plan.router";
 import {schedulerRouter} from "./routes/scheduler.router";
+import {config} from "./config/config";
 
 
 
 const app = express();
 
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: config.corsOrigin,
 }))
 
 app.use(express.json()); // Content-type: application/json
