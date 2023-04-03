@@ -12,4 +12,4 @@ Its final version will let user to set up plan for up to 7 days and 5 meals per 
 
 Backend part of application uses Express framework.
 
-Partialy working application is available on <a href="https://mealplanner.networkmanager.pl> here... </a>
+Partialy working application is available on <a href="https://mealplanner.networkmanager.pl"> here... </a>
