@@ -64,10 +64,4 @@ export class IngredientRecord implements IngredientEntity {
         return resultIngredient
     }
 
-
-    // static async findAll(): Promise<IngredientEntity[]> {
-    //     const [results] = await pool.execute("SELECT * FROM `meals`") as MealRecordResults;
-    //     console.log(results)
-    //     return results;
-    // }
 }

@@ -25,21 +25,4 @@ export class SchedulerRecord implements Scheduler {
 
     }
 
-
-    // static async findAll(): Promise<MealIdPlannerPositionId[]> {
-    //     const [results] = await pool.execute("SELECT * FROM `meals`") as PlanRecordResults;
-    //     return results;
-    // }
-
-    // static async getOne(id: string): Promise<AdRecord> | null {
-    //     const [result] = await pool.execute("SELECT * FROM `ads` WHERE `id` =:id", {
-    //         id,
-    //     }) as AdRecordResults;
-    //
-    //     return result.length === 0 ? null : new AdRecord(result[0])
-    // }
-
-
-
-
 }

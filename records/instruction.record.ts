@@ -54,20 +54,4 @@ export class InstructionRecord implements InstructionEntity {
     }
 
 
-    // static async getOne(id: string): Promise<AdRecord> | null {
-    //     const [result] = await pool.execute("SELECT * FROM `ads` WHERE `id` =:id", {
-    //         id,
-    //     }) as AdRecordResults;
-    //
-    //     return result.length === 0 ? null : new AdRecord(result[0])
-    // }
-
-
-    // static async findAll(): Promise<IngredientEntity[]> {
-    //     const [results] = await pool.execute("SELECT * FROM `meals`") as MealRecordResults;
-    //     console.log(results)
-    //     return results;
-    // }
-
-
 }
