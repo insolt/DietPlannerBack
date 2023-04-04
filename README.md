@@ -10,6 +10,8 @@ Its final version will let user to set up plan for up to 7 days and 5 meals per 
 - users login with email and password,
 - Mobile First approach.
 
-Backend part of application uses Express framework.
+Backend part of application uses Express framework, frontend uses React library as a core, whilst data is stored in MySQL MariaDB database.
 
 Partialy working application is available on <a href="https://mealplanner.networkmanager.pl"> here... </a>
+
+More featurs are going to be available very soon!
